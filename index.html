@@ -153,7 +153,7 @@ footer{padding:3rem;text-align:center;font-family:var(--mono);font-size:10px;let
     <div style="color:var(--ink3);font-size:1.4rem;">&#8594;</div>
     <div style="text-align:center;font-family:var(--mono);font-size:12px;"><div style="background:var(--accent3);color:#fff;padding:8px 16px;border-radius:2px;margin-bottom:6px;">10</div><div style="font-size:9px;color:var(--ink3);">Softmax</div></div>
   </div>
-  <p style="font-size:.85rem;color:var(--ink3);text-align:center;font-family:var(--mono);">CIFAR-10 (50 000 train / 10 000 test) &nbsp;|&nbsp; Adam lr=0.001 &nbsp;|&nbsp; Batch 256 &nbsp;|&nbsp; {n_epochs} epochs &nbsp;|&nbsp; 1 707 274 parameters</p>
+  <p style="font-size:.85rem;color:var(--ink3);text-align:center;font-family:var(--mono);">CIFAR-10 (50 000 train / 10 000 test) &nbsp;|&nbsp; Adam lr=0.001 &nbsp;|&nbsp; Batch 256 &nbsp;|&nbsp; 100 epochs &nbsp;|&nbsp; 1 707 274 parameters</p>
   <div class="insight-box reveal" style="margin-top:2rem;">
     <strong>Note on CIFAR-10 accuracy:</strong> A plain MLP on raw pixels achieves ~50&#8211;55% accuracy on CIFAR-10 (vs ~10% random). The dataset is inherently harder than MNIST &#8212; images have complex textures, lighting, and pose variation that convolutional networks handle much better. The focus here is on <em>weight dynamics and pruning</em>, not on achieving state-of-the-art accuracy.
   </div>
@@ -480,23 +480,6 @@ new Chart(document.getElementById('compSpdChart'),{
 const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.1});
 document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 </script>
-
-<section id="comparison" style="background:var(--paper2)">
-  <div class="section-label">07 &#8212; Cross-Dataset Insight</div>
-  <div class="section-title">MNIST vs CIFAR-10</div>
-  <p class="section-sub">Same method, same architecture depth, very different dynamics. CIFAR-10&#8217;s high-dimensional pixel space forces the network into a much noisier optimisation landscape.</p>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;" class="reveal">
-    <div style="background:var(--paper);border:1px solid var(--rule);border-radius:2px;padding:1.5rem;">
-      <div style="font-family:var(--mono);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink3);margin-bottom:1rem;">MNIST Digits (64 features)</div>
-      <table style="width:100%;font-size:0.85rem;border-collapse:collapse;">
-        <tr><td style="padding:0.4rem 0;color:var(--ink3);font-family:var(--mono);font-size:10px;">Avg N_ext (L0)</td><td style="text-align:right;font-family:var(--mono);">6.3</td></tr>
-        <tr><td style="padding:0.4rem 0;color:var(--ink3);font-family:var(--mono);font-size:10px;">Baseline accuracy</td><td style="text-align:right;font-family:var(--mono);">98.33%</td></tr>
-        <tr><td style="padding:0.4rem 0;color:var(--ink3);font-family:var(--mono);font-size:10px;">Pruned accuracy</td><td style="text-align:right;font-family:var(--mono);">95.83%</td></tr>
-        <tr><td style="padding:0.4rem 0;color:var(--ink3);font-family:var(--mono);font-size:10px;">Accuracy drop</td><td style="text-align:right;font-family:var(--mono);color:var(--accent3);">&#8722;2.50%</td></tr>
-        <tr><td style="padding:0.4rem 0;color:var(--ink3);font-family:var(--mono);font-size:10px;">Speedup</td><td style="text-align:right;font-family:var(--mono);">1.20&#215;</td></tr>
-        <tr><td style="padding:0.4rem 0;color:var(--ink3);font-family:var(--mono);font-size:10px;">Params</td><td style="text-align:right;font-family:var(--mono);">17,226</td></tr>
-      </table>
-    </div>
     <div style="background:var(--paper);border:1px solid var(--rule);border-left:3px solid var(--accent2);border-radius:2px;padding:1.5rem;">
       <div style="font-family:var(--mono);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent2);margin-bottom:1rem;">CIFAR-10 (3072 features) &#8212; This run</div>
       <table style="width:100%;font-size:0.85rem;border-collapse:collapse;">
